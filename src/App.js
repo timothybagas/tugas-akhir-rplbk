@@ -26,7 +26,13 @@ function App() {
       path: "/semua-quiz",
     },
   ];
-  const [navigation, setNavigation] = React.useState(0);
+  const [currentURL, setCurrentURL] = React.useState("/");
+  
+  React.useEffect(() => {
+    const url = window.location.href;
+    const path = "/" + url.split("/").at(-1);
+    setCurrentURL(path);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -34,8 +40,8 @@ function App() {
         {pages.map((page, index) => (
           <NavigationMenu
             key={index}
-            isActive={index === navigation}
-            onClick={() => setNavigation(index)}
+            isActive={currentURL === page.path}
+            onClick={() => setCurrentURL(page.path)}
           >
             <Link to={page.path}>{page.name}</Link>
           </NavigationMenu>
