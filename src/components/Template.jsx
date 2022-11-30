@@ -1,9 +1,13 @@
 import React from "react";
+import Footer from "./Footer";
 
 export default function Template({ children }) {
     return (
-        <div className="bg-slate-200">
-            {children}
-        </div>
+        <>
+            <div className="p-16">
+                {children}
+            </div>
+            <Footer />
+        </>
     );
 }
