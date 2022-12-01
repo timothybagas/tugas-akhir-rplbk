@@ -79,8 +79,6 @@ export default function RandomQuiz() {
                         </button>
                     ))}
                 </div>
-                <div className="mt-4 flex">
-                </div>
                 <div className="mt-2">
                     <button
                         type="button"
