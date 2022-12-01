@@ -5,11 +5,12 @@ import { BASE_URL } from "../constants";
 
 export default function Quizzes() {
     const [quizzes, setQuizzes] = React.useState([]);
+    const [search, setSearch] = React.useState("");
 
     React.useEffect(() => {
         (async function () {
             await axios
-                .get(`${BASE_URL}/quizzes`)
+                .get(`${BASE_URL}/quizzes?search=${search.toLowerCase()}`)
                 .then(response => {
                     const result = response.data;
                     setQuizzes(result.data);
@@ -19,7 +20,7 @@ export default function Quizzes() {
                     console.error(error);
                 });
         })()
-    }, []);
+    }, [search]);
 
     const handleDeleteButton = (quizID, index) => {
         (async function () {
@@ -38,6 +39,10 @@ export default function Quizzes() {
         })()
     };
 
+    const handleSearchBar = e => {
+        if (e.key === "Enter") setSearch(e.target.value);
+    };
+
     return (
         <Template title="Semua Quiz">
             {/* search bar */}
@@ -48,6 +53,7 @@ export default function Quizzes() {
                         className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="exampleSearch2"
                         placeholder="Cari quiz kuy..."
+                        onKeyDown={handleSearchBar}
                     />
                 </div>
             </div>
