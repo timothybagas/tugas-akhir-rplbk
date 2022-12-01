@@ -5,7 +5,7 @@ import { BASE_URL } from "../constants";
 import toast, { Toaster } from "react-hot-toast";
 export default function RandomQuiz() {
     const [quiz, setQuiz] = React.useState([]);
-    const [answer, setAnswer] = React.useState({})
+    const [answer, setAnswer] = React.useState(null)
     const [newQuiz, setNewQuiz] = React.useState(false);
 
     React.useEffect(() => {
